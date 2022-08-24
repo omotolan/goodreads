@@ -1,6 +1,5 @@
 package africa.semicolon.goodreads.security.jwt;
 
-import africa.semicolon.goodreads.security.jwt.TokenProvider;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

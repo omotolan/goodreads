@@ -11,14 +11,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class BookDto {
+public class BookDto extends RepresentationModel<BookDto> implements Serializable {
     private String id;
 
     private String title;

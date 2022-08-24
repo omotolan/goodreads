@@ -4,8 +4,8 @@ import africa.semicolon.goodreads.exceptions.UserNotFoundException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.SignatureException;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,11 +22,10 @@ import java.io.IOException;
 
 @Component
 @Slf4j
-@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
+@Autowired
     private UserDetailsService userDetailsService;
-
+@Autowired
     private TokenProvider tokenProvider;
 
     @Override

@@ -33,10 +33,7 @@ public class UserController {
     private final UserService userService;
     private final BookService bookService;
 
-//    public UserController(UserService userService) {
-//        this.userService = userService;
-//    }
-
+//
 
 
     @GetMapping("/{id}")
@@ -66,7 +63,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getAllUsers() {
         List<UserDto> users = userService.findAll();
-        for(final UserDto user : users){
+        for (final UserDto user : users) {
             Long userId = user.getId();
             Link selfLink = linkTo(UserController.class).slash(userId).withSelfRel();
             user.add(selfLink);
@@ -88,6 +85,11 @@ public class UserController {
                 .result(users.size())
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/books/{email}")
+    public List<BookDto> getAllBooksForUser(@PathVariable("email") @Valid @NotBlank @NotNull String email) {
+        return bookService.getAllBooksForUser(email);
     }
 
     @PatchMapping("/")
