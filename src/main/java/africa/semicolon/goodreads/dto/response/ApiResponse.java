@@ -1,4 +1,4 @@
-package africa.semicolon.goodreads.dto;
+package africa.semicolon.goodreads.dto.response;
 
 import lombok.*;
 

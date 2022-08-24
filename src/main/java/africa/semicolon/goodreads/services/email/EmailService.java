@@ -1,6 +1,7 @@
-package africa.semicolon.goodreads.services;
+package africa.semicolon.goodreads.services.email;
 
-import africa.semicolon.goodreads.dto.VerificationMessageRequest;
+import africa.semicolon.goodreads.dto.request.VerificationMessageRequest;
+import africa.semicolon.goodreads.dto.response.MailResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.concurrent.CompletableFuture;

@@ -1,7 +1,7 @@
 package africa.semicolon.goodreads.data.models;
 
-import africa.semicolon.goodreads.enums.AgeRate;
-import africa.semicolon.goodreads.enums.Category;
+import africa.semicolon.goodreads.data.enums.AgeRate;
+import africa.semicolon.goodreads.data.enums.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -15,7 +15,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Document
 @Getter

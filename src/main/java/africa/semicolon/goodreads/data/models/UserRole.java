@@ -1,5 +1,6 @@
 package africa.semicolon.goodreads.data.models;
 
+import africa.semicolon.goodreads.data.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;

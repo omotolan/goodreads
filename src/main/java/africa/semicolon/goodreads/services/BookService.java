@@ -2,7 +2,7 @@ package africa.semicolon.goodreads.services;
 
 import africa.semicolon.goodreads.data.models.Book;
 import africa.semicolon.goodreads.dto.BookDto;
-import africa.semicolon.goodreads.dto.BookItemUploadRequest;
+import africa.semicolon.goodreads.dto.request.BookItemUploadRequest;
 import africa.semicolon.goodreads.dto.Credentials;
 import africa.semicolon.goodreads.exceptions.BookNotFoundException;
 import africa.semicolon.goodreads.exceptions.GoodReadsException;

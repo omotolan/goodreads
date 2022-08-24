@@ -1,10 +1,10 @@
 package africa.semicolon.goodreads.security;
 
-import africa.semicolon.goodreads.data.models.Role;
+import africa.semicolon.goodreads.data.enums.Role;
 import africa.semicolon.goodreads.data.models.User;
 import africa.semicolon.goodreads.data.models.UserRole;
 import africa.semicolon.goodreads.data.repository.UserRepository;
-import africa.semicolon.goodreads.enums.AccountStatus;
+import africa.semicolon.goodreads.data.enums.AccountStatus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;

@@ -1,7 +1,7 @@
-package africa.semicolon.goodreads.dto;
+package africa.semicolon.goodreads.dto.request;
 
-import africa.semicolon.goodreads.enums.AgeRate;
-import africa.semicolon.goodreads.enums.Category;
+import africa.semicolon.goodreads.data.enums.AgeRate;
+import africa.semicolon.goodreads.data.enums.Category;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

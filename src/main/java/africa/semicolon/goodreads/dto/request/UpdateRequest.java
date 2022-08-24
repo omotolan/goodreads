@@ -1,7 +1,7 @@
-package africa.semicolon.goodreads.dto;
+package africa.semicolon.goodreads.dto.request;
 
-import africa.semicolon.goodreads.enums.AccountStatus;
-import africa.semicolon.goodreads.enums.Gender;
+import africa.semicolon.goodreads.data.enums.AccountStatus;
+import africa.semicolon.goodreads.data.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

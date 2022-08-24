@@ -1,6 +1,7 @@
-package africa.semicolon.goodreads.services;
+package africa.semicolon.goodreads.services.email;
 
-import africa.semicolon.goodreads.dto.VerificationMessageRequest;
+import africa.semicolon.goodreads.dto.request.VerificationMessageRequest;
+import africa.semicolon.goodreads.dto.response.MailResponse;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -35,6 +36,7 @@ public class MailGunEmailService implements EmailService {
 
 
     }
+
     @Async
     @Override
     public CompletableFuture<MailResponse> sendHtmlMail(VerificationMessageRequest messageRequest) throws UnirestException {

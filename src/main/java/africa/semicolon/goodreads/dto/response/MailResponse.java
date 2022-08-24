@@ -1,4 +1,4 @@
-package africa.semicolon.goodreads.services;
+package africa.semicolon.goodreads.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

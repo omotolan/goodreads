@@ -1,8 +1,8 @@
 package africa.semicolon.goodreads.events;
 
-import africa.semicolon.goodreads.dto.VerificationMessageRequest;
-import africa.semicolon.goodreads.services.EmailService;
-import africa.semicolon.goodreads.services.MailResponse;
+import africa.semicolon.goodreads.dto.request.VerificationMessageRequest;
+import africa.semicolon.goodreads.services.email.EmailService;
+import africa.semicolon.goodreads.dto.response.MailResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

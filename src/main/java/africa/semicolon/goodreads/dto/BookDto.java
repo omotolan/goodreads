@@ -1,7 +1,7 @@
 package africa.semicolon.goodreads.dto;
 
-import africa.semicolon.goodreads.enums.AgeRate;
-import africa.semicolon.goodreads.enums.Category;
+import africa.semicolon.goodreads.data.enums.AgeRate;
+import africa.semicolon.goodreads.data.enums.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
