@@ -19,7 +19,7 @@ public class MailGunEmailService implements EmailService {
 
     private final String PRIVATE_KEY = System.getenv("PRIVATE_KEY");
 
-    @Async
+
     @Override
     public CompletableFuture<MailResponse> sendSimpleMail(VerificationMessageRequest messageRequest) throws UnirestException {
         log.info("DOMAIN -> {}", DOMAIN);
@@ -37,7 +37,6 @@ public class MailGunEmailService implements EmailService {
 
     }
 
-    @Async
     @Override
     public CompletableFuture<MailResponse> sendHtmlMail(VerificationMessageRequest messageRequest) throws UnirestException {
         log.info("DOMAIN -> {}", DOMAIN);
