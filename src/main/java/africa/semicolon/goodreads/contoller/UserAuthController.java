@@ -10,6 +10,7 @@ import africa.semicolon.goodreads.exceptions.UserAlreadyExist;
 import africa.semicolon.goodreads.security.jwt.TokenProvider;
 import africa.semicolon.goodreads.services.UserAuthService;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,18 +32,12 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
 @Slf4j
 public class UserAuthController {
     private final UserAuthService userAuthService;
     private final AuthenticationManager authenticationManager;
-
     private final TokenProvider tokenProvider;
-
-    public UserAuthController(UserAuthService userAuthService, AuthenticationManager authenticationManager, TokenProvider tokenProvider) {
-        this.userAuthService = userAuthService;
-        this.authenticationManager = authenticationManager;
-        this.tokenProvider = tokenProvider;
-    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(HttpServletRequest request, @RequestBody @Valid @NotNull AccountCreationRequest accountCreationRequest) throws UnirestException, GoodReadsException, ExecutionException, InterruptedException {

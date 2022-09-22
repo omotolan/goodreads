@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class UserRole {
     @Setter(AccessLevel.NONE)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
     @Enumerated(EnumType.STRING)

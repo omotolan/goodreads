@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Validated
@@ -25,19 +26,10 @@ import java.util.HashSet;
 @AllArgsConstructor
 @Builder
 public class User {
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
-    @SequenceGenerator(
-            name = "user_id_sequence",
-            sequenceName = "user_id_sequence"
-    )
+
     @Id
     @Column(name = "user_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_id_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -71,11 +63,17 @@ public class User {
 
     private Boolean isVerified;
     @OneToMany
-    private HashSet<UserRole> userRoles;
+    private Set<UserRole> userRoles = new HashSet<>();
 
     @Enumerated(value = EnumType.STRING)
     private AccountStatus accountStatus;
 
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }

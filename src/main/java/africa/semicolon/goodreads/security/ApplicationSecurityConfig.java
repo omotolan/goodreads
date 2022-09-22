@@ -2,10 +2,12 @@ package africa.semicolon.goodreads.security;
 
 import africa.semicolon.goodreads.security.jwt.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,46 +18,55 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true
+)
 public class ApplicationSecurityConfig {
-
     private final UnAuthorizedEntryPoint unAuthorizedEntryPoint;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().and().cors().disable()
+        http.cors().and().csrf().disable()
                 .authorizeHttpRequests(authorize -> {
                     try {
-                        authorize.antMatchers("/**/user/signup", "/**/user/login").permitAll()
+                        authorize.antMatchers("/**/auth/**").permitAll()
+                                .antMatchers("/customError").permitAll()
+                                .antMatchers("/access-denied").permitAll()
+
                                 .anyRequest().authenticated()
                                 .and()
-                                .exceptionHandling()
-                                .authenticationEntryPoint(unAuthorizedEntryPoint)
-                                .and().sessionManagement()
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                                .exceptionHandling().authenticationEntryPoint(unAuthorizedEntryPoint)
+                                .accessDeniedHandler(accessDeniedHandler())
+                                .and()
+                                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 });
         http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterAfter(exceptionHandlerFilterBean(), UsernamePasswordAuthenticationFilter.class);
-    return http.build();
+        return http.build();
     }
+
     @Bean
-    public BCryptPasswordEncoder bcryptPasswordEncoder(){
+    public BCryptPasswordEncoder bcryptPasswordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilterBean(){
+    public JwtAuthenticationFilter jwtAuthenticationFilterBean() {
         return new JwtAuthenticationFilter();
     }
 
     @Bean
-    public ExceptionHandlerFilter exceptionHandlerFilterBean(){
+    public ExceptionHandlerFilter exceptionHandlerFilterBean() {
         return new ExceptionHandlerFilter();
     }
 

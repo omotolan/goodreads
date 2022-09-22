@@ -7,6 +7,7 @@ import africa.semicolon.goodreads.exceptions.GoodReadsException;
 import africa.semicolon.goodreads.services.BookService;
 import africa.semicolon.goodreads.services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
@@ -28,12 +29,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Slf4j
 @RequestMapping("/api/v1/users")
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final BookService bookService;
 
-//
+
 
 
     @GetMapping("/{id}")

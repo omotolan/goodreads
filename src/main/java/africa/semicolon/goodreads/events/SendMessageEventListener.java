@@ -6,6 +6,7 @@ import africa.semicolon.goodreads.dto.response.MailResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -15,12 +16,12 @@ import org.thymeleaf.context.Context;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
-@Component("mailgun_sender")
+@Component//("mailgun_sender")
 @Slf4j
 @AllArgsConstructor
 public class SendMessageEventListener {
 
-       // @Qualifier("mailgun_sender")
+        @Qualifier("mailgun_sender")
     private final EmailService emailService;
     private final TemplateEngine templateEngine;
     private final Environment environment;
@@ -36,7 +37,7 @@ public class SendMessageEventListener {
         Context context = new Context();
         context.setVariable("user_name", messageRequest.getUsersFullName().toUpperCase());
         context.setVariable("verification_token", verificationLink);
-        if (Arrays.asList(environment.getActiveProfiles()).contains("prod")) {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
             log.info("Message Event -> {}", event.getSource());
             messageRequest.setBody(templateEngine.process("registration_verification_mail.html", context));
             MailResponse mailResponse = emailService.sendHtmlMail(messageRequest).get();
